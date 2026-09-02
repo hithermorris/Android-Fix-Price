@@ -1,0 +1,315 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-roboto);
+  --font-mono: var(--font-roboto);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+body {
+  font-family: var(--font-roboto), Roboto, Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --background: oklch(0.982 0.006 250);
+  --foreground: oklch(0.205 0.018 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.205 0.018 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.58 0.235 29);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.94 0.04 165);
+  --secondary-foreground: oklch(0.38 0.1 165);
+  --muted: oklch(0.955 0.008 250);
+  --muted-foreground: oklch(0.51 0.026 260);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.9 0.012 250);
+  --input: oklch(0.9 0.012 250);
+  --ring: oklch(0.58 0.235 29);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.prototype-stage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  background:
+    radial-gradient(circle at 50% 12%, rgb(255 255 255 / 10%), transparent 32rem),
+    #202227;
+  padding: 24px;
+}
+
+.prototype-reset {
+  position: sticky;
+  bottom: 16px;
+  z-index: 2;
+  width: min(360px, calc(100vw - 48px));
+  flex: none;
+  margin-top: 12px;
+}
+
+.android-device {
+  display: flex;
+  width: min(360px, calc(100vw - 24px));
+  aspect-ratio: 360 / 800;
+  max-height: calc(100vh - 32px);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 28px 80px rgb(0 0 0 / 42%);
+}
+
+.android-status {
+  display: flex;
+  height: 28px;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  background: #fafafa;
+  padding: 0 16px;
+  color: var(--foreground);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.android-navigation {
+  display: grid;
+  height: 24px;
+  flex: none;
+  place-items: center;
+  background: #fff;
+}
+
+.map-screen { position:relative; min-height:0; flex:1; overflow:hidden; background:#fff; }
+.map-screen { animation: map-screen-enter 260ms cubic-bezier(.2,.8,.2,1) both; }
+@keyframes map-screen-enter { from { transform: translateX(100%); } to { transform: translateX(0); } }
+.map-screen.is-closing { animation: map-screen-exit 260ms cubic-bezier(.2,.8,.2,1) both; }
+@keyframes map-screen-exit { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .map-screen { animation: none; } }
+.map-canvas { position:absolute; inset:0 0 278px; overflow:hidden; background:#eef2e8 url('/address-map.png') center center / cover no-repeat; }
+.map-canvas::before,.map-canvas::after{display:none}
+.map-back,.map-controls button{border:0;background:#fff;border-radius:999px;box-shadow:0 4px 12px rgb(0 0 0 / 8%)}.map-back{position:absolute;top:16px;left:16px;z-index:2;width:42px;height:42px;padding:9px}.map-back img{width:24px;height:24px}.map-center-pin{position:absolute;top:53%;left:50%;z-index:2;width:32px;height:32px;transform:translate(-50%,-50%)}.map-place,.map-road{position:absolute;z-index:1;color:#4d8edd;font-size:13px;font-weight:500}.place-one{top:12%;left:42%}.place-two{top:22%;left:28%;color:#8b80db}.place-three{top:52%;left:53%}.map-road{top:58%;left:36%;color:#555;transform:rotate(8deg)}
+.map-controls{position:absolute;top:22%;right:16px;z-index:2;display:flex;flex-direction:column;gap:8px}.map-controls button{width:42px;height:42px;padding:9px}.map-controls img{width:24px;height:24px;display:block}
+.map-sheet{position:absolute;inset:auto 0 0;z-index:3;min-height:278px;padding:0 16px 16px;border-radius:16px 16px 0 0;background:#fff;box-shadow:0 -4px 12px rgb(0 0 0 / 8%)}.map-sheet-handle{width:30px;height:4px;margin:12px auto 16px;border-radius:3px;background:#d7d7d7}.delivery-options{display:flex;width:100%;height:62px;gap:0}.delivery-option{position:relative;width:110px;height:62px;overflow:hidden;border:0;border-radius:8px;background:#f5f5f5;color:#2f2f2f;text-align:left;font-size:13px;font-weight:600;line-height:16px;padding:8px}.delivery-option.is-selected{box-shadow:inset 0 0 0 2px #81bb3c}.delivery-option img{position:absolute;right:0;bottom:0;display:block;width:auto;height:auto;max-width:78px;max-height:54px;object-fit:contain;object-position:right bottom}.map-sheet h1{margin:16px 0 4px;font-size:19px;line-height:23px;font-weight:500}.map-sheet p{margin:0 0 12px;color:#808080;font-size:13px;line-height:16px}.address-field{display:flex;height:52px;align-items:center;border-radius:8px;background:#f5f5f5;padding:0 16px}.address-field input{min-width:0;flex:1;border:0;outline:0;background:transparent;color:#2f2f2f;font:15px Roboto, sans-serif}.address-field button{width:24px;height:32px;border:0;border-left:1px solid #d7d7d7;background:transparent;font-size:30px;line-height:1}.map-submit{width:100%;height:48px;max-height:48px;margin-top:16px;border:0;border-radius:8px;background:#81bb3c;color:#fff;font-size:16px;font-weight:600}.map-submit:disabled{color:transparent}
+
+
+.android-navbar {
+  display: grid;
+  height: 50px;
+  flex: none;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: stretch;
+  border-radius: 16px 16px 0 0;
+  background: #fff;
+  box-shadow: 0 -4px 12px rgb(0 0 0 / 8%);
+  overflow: hidden;
+  padding: 0;
+  z-index: 3;
+}
+
+.android-navbar-item {
+  display: flex;
+  box-sizing: border-box;
+  height: 50px;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-direction: column;
+  text-align: center;
+  border: 0;
+  background: transparent;
+  color: #808080;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 12px;
+  padding: 0;
+}
+
+.android-navbar-item[data-active='true'] {
+  color: #3c7be0;
+}
+
+.android-navbar-item:focus-visible {
+  outline: 2px solid #81bb3c;
+  outline-offset: -2px;
+}
+
+.android-navbar-item:disabled {
+  cursor: default;
+}
+
+.android-navbar-icon {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  flex: none;
+}
+
+.android-navbar-item > span:last-child {
+  width: 100%;
+  text-align: center;
+}
+
+.android-navbar-icon img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.android-navbar-icon-badge,
+.android-navbar-icon-badge img {
+  width: 39px;
+}
+
+.android-navbar-item[data-active='true'] .android-navbar-icon:not(.android-navbar-icon-badge) img {
+  filter: brightness(0) saturate(100%) invert(45%) sepia(94%) saturate(1300%) hue-rotate(195deg) brightness(91%) contrast(91%);
+}
+
+/* У активной иконки Главной уже заложены цвета логотипа F и белой детали. */
+.android-navbar-item:first-child[data-active='true'] .android-navbar-icon img {
+  filter: none;
+}
+
+.android-navigation span {
+  width: 84px;
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--foreground), transparent 22%);
+}
+
+.delivery-option { display: block; width: 33.3333%; padding: 0; }
+.delivery-options { gap: 8px; }
+.delivery-option { width: auto; flex: 1 1 0; }
+.delivery-option span { position: absolute; top: 8px; left: 8px; z-index: 1; display: block; text-align: left; }
+.delivery-option:disabled { cursor: default; }
+.delivery-option.is-selected { outline: 2px solid #81bb3c; outline-offset: 2px; box-shadow: none; }
+.delivery-option img { width: 72px; height: 62px; max-width: none; max-height: none; }
+.address-field input { color: #2f2f2f; }
+.address-field input::placeholder { color: #2f2f2f; opacity: 1; }
+.address-field button { display: flex; width: 40px; margin-left: 16px; padding-left: 16px; align-items: center; justify-content: flex-end; }
+.address-field button img { width: 24px; height: 24px; display: block; }
+.map-loader { display: block; width: 20px; height: 20px; border: 3px solid rgb(255 255 255 / 45%); border-top-color: #fff; border-radius: 50%; animation: map-loader-spin .8s linear infinite; }
+.map-submit { display: flex; align-items: center; justify-content: center; }
+@keyframes map-loader-spin { to { transform: rotate(360deg); } }
+
+@media (max-height: 840px) and (min-width: 390px) {
+  .android-device {
+    width: auto;
+    height: calc(100vh - 32px);
+  }
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
